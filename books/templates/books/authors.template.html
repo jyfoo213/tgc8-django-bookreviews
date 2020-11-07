@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Authors</h1>
+    <table>
+        <tr>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Date of Birth</td>
+            <td></td>
+        </tr>
+        {%for a in authors %}
+            <tr>
+                <td>{{a.first_name}}</td>
+                <td>{{a.last_name}}</td>
+                <td>{{a.dob}}</td>
+                <td>
+                    <a href="{% url 'update_author_route' author_id=a.id %}">Edit</a>
+                </td>
+            </tr>
+        {%endfor%}
+    </table>
+</body>
+</html>
