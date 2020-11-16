@@ -12,7 +12,10 @@
     <h1>Hello World</h1>
     <ul>
     {% for b in books %}
-        <li>{{b.title}} - {{b.ISBN}} <a href="{% url 'update_book_route' book_id=b.id %}">Edit</a></li>
+        <li>
+            {{b.title}} - {{b.ISBN}} <a href="{% url 'update_book_route' book_id=b.id %}">Edit</a>
+            <a href="{% url 'delete_book_route' book_id=b.id %}">Delete</a>
+        </li>
     {% endfor %}
     </ul>
 </body>

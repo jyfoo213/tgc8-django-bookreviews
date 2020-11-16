@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect, reverse, get_object_or_404
-from .models import Book, Author
+from .models import Book, Author, Publisher
 from .forms import BookForm, PublisherForm, AuthorForm
 # Create your views here.
 
@@ -16,6 +16,14 @@ def view_authors(request):
     all_authors = Author.objects.all()
     return render(request, 'books/authors.template.html', {
         'authors': all_authors
+    })
+
+
+def view_publishers(request):
+    all_publishers = Publisher.objects.all()
+    print(all_publishers)
+    return render(request, 'books/publishers.template.html', {
+        'publishers': all_publishers
     })
 
 
@@ -95,4 +103,31 @@ def edit_author(request, author_id):
         return render(request, 'books/edit_author.template.html', {
             'form': author_form,
             'author': author_being_updated
+        })
+
+
+def delete_book(request, book_id):
+    # check if the form has been submtited via POST
+    if request.method == "POST":
+        book_being_deleted = get_object_or_404(Book, pk=book_id)
+        book_being_deleted.delete()
+        return redirect(index)
+    else:
+        # if the form haven't been submitted via POST, then it means it is via GET
+        # hence we display the form
+        book_being_deleted = get_object_or_404(Book, pk=book_id)
+        return render(request, 'books/confirm_delete.template.html', {
+            'book': book_being_deleted
+        })
+
+
+def delete_publisher(request, publisher_id):
+    if request.method == "POST":
+        publisher_to_delete = get_object_or_404(Publisher, pk=publisher_id)
+        publisher_to_delete.delete()
+        return redirect(view_publishers)
+    else:
+        publisher_to_delete = get_object_or_404(Publisher, pk=publisher_id)
+        return render(request, 'books/confirm_delete_publisher.template.html', {
+            'publisher': publisher_to_delete
         })

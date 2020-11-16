@@ -24,11 +24,16 @@ urlpatterns = [
     path('books/', books.views.index),
     path('reviews/', reviews.views.index),
     path('authors/', books.views.view_authors),
+    path('publishers', books.views.view_publishers),
     path('create_book/', books.views.create_book),
     path('create_publisher/', books.views.create_publisher),
     path('create_author/', books.views.create_author),
     path('edit_book/<book_id>', books.views.edit_book,
          name='update_book_route'),
     path('edit_author/<author_id>', books.views.edit_author,
-         name="update_author_route")
+         name="update_author_route"),
+    path('delete_book/<book_id>', books.views.delete_book,
+         name="delete_book_route"),
+    path('delete_publisher/<publisher_id>', books.views.delete_publisher,
+         name="delete_publisher_route")
 ]
