@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -33,6 +34,8 @@ class Book(models.Model):
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
 
     authors = models.ManyToManyField('Author')
+
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
     # toString function -- it allows us to state the string representation
     # of a class

@@ -1,0 +1,38 @@
+{% extends 'base.template.html' %}
+
+{% block content %}
+<h1>{{book.title}}</h1>
+<ul>
+    <li>ISBN: {{book.ISBN}}</li>
+    <li>Genre: {{book.genre.title}}</li>
+</ul>
+
+<h2>Tags</h2>
+<ul>
+    {% for t in book.tags.all %}
+        <li>{{t.title}}</li>
+    {% endfor%}
+</ul>
+
+<h2>Authors</h2>
+<ul>
+    {% for a in book.authors.all %}
+        <li>{{a}}</li>
+    {% endfor %}
+</ul>
+
+<h2>Reviews</h2>
+
+{%for r in book.review_set.all %}
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{r.title}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">{{r.user}}</h6>
+    <p class="card-text">{{r.content}}</p>
+  </div>
+</div>
+{%endfor%}
+
+
+{% endblock %}
+

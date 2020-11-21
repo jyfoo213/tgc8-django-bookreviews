@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('books/', books.views.index),
+    path('book/details/<book_id>', books.views.view_book_details),
     path('book/create', books.views.create_book),
     path('book/edit/<book_id>', books.views.edit_book,
          name='update_book_route'),
