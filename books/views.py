@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect, reverse, get_object_or_404
 from .models import Book, Author, Publisher
 from .forms import BookForm, PublisherForm, AuthorForm
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
@@ -27,6 +28,7 @@ def view_publishers(request):
     })
 
 
+@login_required
 def create_book(request):
     if request.method == "POST":
         # eqv. request.POST is the same request.form in Flask
