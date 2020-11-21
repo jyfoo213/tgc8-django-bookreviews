@@ -21,7 +21,7 @@
     {% endfor %}
 </ul>
 
-<h2>Reviews</h2>
+<h2>Reviews <a href="{% url 'create_review_route' book_id=book.id %}" class="btn btn-primary">New Review</a></h2>
 
 {%for r in book.review_set.all %}
 <div class="card" style="width: 18rem;">

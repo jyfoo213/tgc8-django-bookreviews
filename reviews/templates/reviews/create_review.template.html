@@ -1,7 +1,7 @@
 {% extends 'base.template.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <h1>Create a new review</h1>
+    <h1>Create a new review for {{book}}</h1>
     <form method="POST">
     {% csrf_token %}
     {{form|crispy}}
