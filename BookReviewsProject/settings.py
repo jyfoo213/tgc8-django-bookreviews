@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'allauth',
     'allauth.account',
-    'allauth.socialaccount'
+    'allauth.socialaccount',
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [
@@ -163,3 +164,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
+
+MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
+
+# tell Django crispy form to format our forms using bootstrap v4 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

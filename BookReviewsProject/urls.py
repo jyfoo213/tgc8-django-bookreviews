@@ -29,6 +29,7 @@ urlpatterns = [
     path('book/delete/<book_id>', books.views.delete_book,
          name="delete_book_route"),
     path('reviews/', reviews.views.index),
+    path('reviews/create', reviews.views.create_review),
     path('authors/', books.views.view_authors),
     path('author/create', books.views.create_author),
     path('author/delete/<author_id>', books.views.delete_author,

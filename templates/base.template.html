@@ -13,6 +13,15 @@
   </head>
   <body>
     <div class="container">
+    {%if messages %}
+    <div class="alert alert-success">
+        {% for message in messages %}
+        <p>{{message}}</p>
+        {% endfor %}
+    </div>
+
+    {%endif%}
+
     <h1>{%block head_title%}{%endblock%}</h1>
     {%block content%}{%endblock%}
     </div>

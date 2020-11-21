@@ -1,7 +1,29 @@
-from django.shortcuts import render
-
+from django.shortcuts import render, HttpResponse, redirect
+from .models import Review
+from .forms import ReviewForm
+from django.contrib import messages
 # Create your views here.
 
 
 def index(request):
-    return render(request, 'reviews/index.template.html')
+    reviews = Review.objects.all()
+    return render(request, 'reviews/index.template.html', {
+        'reviews': reviews
+    })
+
+
+def create_review(request):
+    if request.method == "POST":
+        # fill in the form with what the user has typed in
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            # save the form it will the create model instance
+            # i.e it will insert the new row into the table in the database
+            form.save()
+            messages.success(request, "New review added!")
+            return redirect(index)
+    else:
+        form = ReviewForm()
+        return render(request, 'reviews/create_review.template.html', {
+            'form': form
+        })

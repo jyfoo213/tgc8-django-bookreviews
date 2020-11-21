@@ -1,11 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'base.template.html' %}
+
+{% block content %}
     <h1>Reviews</h1>
-</body>
-</html>
+    {% for each_review in reviews %}
+    <div class="card" style="width: 18rem">
+      <div class="card-body">
+        <h5 class="card-title">{{each_review.title}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{each_review.book}}</h6>
+        <p class="card-text">
+         {{each_review.content}}
+        </p>
+        <p>
+        Posted on: {{each_review.date}}
+        </p>
+      </div>
+      {% endfor %}
+{%endblock%}
