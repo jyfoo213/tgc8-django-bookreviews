@@ -131,3 +131,14 @@ def delete_publisher(request, publisher_id):
         return render(request, 'books/confirm_delete_publisher.template.html', {
             'publisher': publisher_to_delete
         })
+
+
+def delete_author(request, author_id):
+    author = get_object_or_404(Author, pk=author_id)
+    if request.method == "POST":
+        author.delete()
+        return redirect(view_authors)
+    else:
+        return render(request, 'books/confirm_delete_author.template.html', {
+            'author': author
+        })
