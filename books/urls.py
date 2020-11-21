@@ -3,6 +3,7 @@ import books.views
 
 urlpatterns = [
     path('', books.views.index),
+    path('search/', books.views.search),
     path('book/details/<book_id>', books.views.view_book_details, name="book_details_route"),
     path('book/create', books.views.create_book),
     path('book/edit/<book_id>', books.views.edit_book,
