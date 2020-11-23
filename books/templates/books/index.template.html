@@ -11,9 +11,10 @@
     {% endif %}
     <ul>
     {% for b in books %}
-        <li>
+        <li class="mt-1 mb-1">
             <a href="{%url 'book_details_route' book_id=b.id %}">{{b.title}}</a> - {{b.ISBN}} <a href="{% url 'update_book_route' book_id=b.id %}">Edit</a>
-            <a href="{% url 'delete_book_route' book_id=b.id %}">Delete</a>
+            <a href="{% url 'delete_book_route' book_id=b.id %}" class="btn btn-primary btn-sm">Delete</a>
+            <a href="{% url 'add_to_cart' book_id=b.id %}" class="btn btn-primary btn-sm">Add to Cart</a>
         </li>
     {% endfor %}
     </ul>

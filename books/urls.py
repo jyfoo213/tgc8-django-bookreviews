@@ -2,7 +2,7 @@ from django.urls import path, include
 import books.views
 
 urlpatterns = [
-    path('', books.views.index),
+    path('', books.views.index, name="view_books_route"),
     path('search/', books.views.search),
     path('book/details/<book_id>', books.views.view_book_details, name="book_details_route"),
     path('book/create', books.views.create_book),
