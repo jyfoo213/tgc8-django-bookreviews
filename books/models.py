@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
@@ -36,6 +37,8 @@ class Book(models.Model):
     authors = models.ManyToManyField('Author')
 
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    cover = CloudinaryField()
 
     # toString function -- it allows us to state the string representation
     # of a class

@@ -1,7 +1,9 @@
 {% extends 'base.template.html' %}
+{% load cloudinary %}
 
 {% block content %}
 <h1>{{book.title}}</h1>
+{% cloudinary book.cover %}
 <ul>
     <li>ISBN: {{book.ISBN}}</li>
     <li>Genre: {{book.genre.title}}</li>

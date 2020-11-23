@@ -1,9 +1,68 @@
 {% extends 'base.template.html'%}
 {% load crispy_forms_tags %}
+{% load cloudinary %} 
+{% load static %} 
+
 {% block content%}
-    <form method="POST">    
-    {% csrf_token %}
-    {{ form|crispy }}
-    <input type="submit"/>    
-    </form>
+<form method="POST" id="form">
+  {% csrf_token %} {{ form|crispy }}
+  <input type="submit" />
+</form>
+
+<div class="status">
+  <h2>Status</h2>
+  <span class="status_value">Idle</span>
+</div>
+
+<div class="uploaded_info_folder"></div>
+
+{%endblock%}
+
+{%block js%}
+{% cloudinary_includes %}
+{% cloudinary_js_config %}
+
+<script>
+  function prettydump(obj) {
+      ret = ""
+      $.each(obj, function(key, value) {
+          ret += "<tr><td>" + key + "</td><td>" + value + "</td></tr>";
+      });
+      return ret;
+  }
+
+  $(function(){
+        $("#form input[type='file']").cloudinary_fileupload({
+            dropZone: "#form",
+            start:function(){
+                $('.status_value').text("Starting direct upload")
+            },
+            progress: function(){
+                $('.status_value').text('uploading')
+            }
+        })
+        .on('cloudinarydone', function(e, data){
+            $('.status_value').text('Updating backend');
+            let info = $('<div class="uploaded_info"/>')
+            $(info).append(
+                "<div class='data'/>"
+            ).append(prettydump(data.result));
+
+            $(info).append(
+                $('<div class="image"/>').append(
+                    $.cloudinary.image(data.result.public_id,{
+                        format: data.result.format,
+                        width: 150,
+                        height: 150,
+                        crop: 'fill'
+                    })
+                )          
+            
+            ) //end append
+            $('.uploaded_info_folder').append(info);
+            $('#form input[type="file"]').remove();
+        });
+
+  })
+</script>
 {%endblock%}
