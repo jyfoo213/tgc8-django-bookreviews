@@ -17,7 +17,7 @@ def add_to_cart(request, book_id):
         cart[book_id] = {
             'id': book_id,
             'title': book.title,
-            'cost': "{:.2f}".format(book.cost/1000),
+            'cost': "{:.2f}".format(book.cost/100),
             'qty': 1
         }
     else:

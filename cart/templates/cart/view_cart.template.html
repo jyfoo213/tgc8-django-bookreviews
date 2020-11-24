@@ -2,6 +2,7 @@
 
 {% block content%}
 <h1>My Shopping Cart</h1>
+<a href="{% url 'checkout' %}" class="btn btn-success">Checkout</a>
    {%for key, i in cart.items %}
     <div class="card mt-2 mb-2">       
         <div class="card-body">
