@@ -40,6 +40,8 @@ class Book(models.Model):
 
     cover = CloudinaryField()
 
+    cost = models.IntegerField(blank=False)
+
     # toString function -- it allows us to state the string representation
     # of a class
     def __str__(self):
