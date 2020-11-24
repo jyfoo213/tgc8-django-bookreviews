@@ -6,7 +6,13 @@
     <div class="card mt-2 mb-2">       
         <div class="card-body">
          <div class="card-title"><h3>{{i.title}}</h3></div>
-            Quantity:{{i.qty}}<br/>
+         <div>
+            <form method="POST" action="{% url 'update_cart_quantity' book_id=i.id%}">
+                {% csrf_token %}
+                Quantity:<input type="text" value="{{i.qty}}" name="qty" style="width:40px" />
+                <input class="btn btn-primary btn-sm" type="submit" value="Update Quantity">
+            </form>
+         </div>
             Cost: ${{i.cost}}<br/>
             <a href="{% url 'remove_from_cart' book_id=i.id %}" class="btn btn-danger btn-sm">Remove</a>
         </div>
