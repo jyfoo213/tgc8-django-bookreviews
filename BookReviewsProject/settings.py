@@ -29,7 +29,7 @@ SECRET_KEY = '@wc#sk7h_$2m4m3#_y!n7^k0v!uxij8h9c54nj0vmro89g66p#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["*", "ckx-tgc9-book-review.herokuapp.com"]
 
 
 # Application definition
@@ -172,6 +172,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
+
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 
